@@ -68,63 +68,37 @@ int main() {
 
         // Basic information
         std::cout << "Compute Capability:             " << prop.major << "." << prop.minor << "\n";
-
         std::cout << "Total Global Memory:            " << prop.totalGlobalMem / (1024 * 1024) << " MB\n";
-
         std::cout << "Streaming Multiprocessors:      " << prop.multiProcessorCount << "\n";
-
         std::cout << "Cores Per SM:                   " << coresPerSM << "\n";
-
         std::cout << "Estimated Total CUDA Cores:     " << prop.multiProcessorCount * coresPerSM << "\n";
 
         // Thread information
         std::cout << "\n--- Thread Configuration ---\n";
-
         std::cout << "Warp Size:                      " << prop.warpSize << "\n";
-
         std::cout << "Max Threads Per Block:          " << prop.maxThreadsPerBlock << "\n";
-
         std::cout << "Max Threads Per SM:             " << prop.maxThreadsPerMultiProcessor << "\n";
-
-        std::cout << "Max Threads Dimension:          "
-                  << prop.maxThreadsDim[0] << " x "
-                  << prop.maxThreadsDim[1] << " x "
-                  << prop.maxThreadsDim[2] << "\n";
-
-        std::cout << "Max Grid Dimension:             "
-                  << prop.maxGridSize[0] << " x "
-                  << prop.maxGridSize[1] << " x "
-                  << prop.maxGridSize[2] << "\n";
+        std::cout << "Max Threads Dimension:          "<< prop.maxThreadsDim[0] << " x "<< prop.maxThreadsDim[1] << " x " << prop.maxThreadsDim[2] << "\n";
+        std::cout << "Max Grid Dimension:             "<< prop.maxGridSize[0] << " x "<< prop.maxGridSize[1] << " x "<< prop.maxGridSize[2] << "\n";
 
         // Memory information
         std::cout << "\n--- Memory ---\n";
-
         std::cout << "Shared Memory Per Block:        " << prop.sharedMemPerBlock / 1024 << " KB\n";
-
         std::cout << "Shared Memory Per SM:           " << prop.sharedMemPerMultiprocessor / 1024 << " KB\n";
-
         std::cout << "Constant Memory:                " << prop.totalConstMem / 1024 << " KB\n";
-
         std::cout << "L2 Cache Size:                  " << prop.l2CacheSize / 1024 << " KB\n";
-
         std::cout << "Memory Bus Width:               " << prop.memoryBusWidth << " bits\n";
 
         // Clock information
         std::cout << "\n--- Clock Information ---\n";
-
         std::cout << "GPU Clock Rate:                 " << prop.clockRate / 1000 << " MHz\n";
-
         std::cout << "Memory Clock Rate:              " << prop.memoryClockRate / 1000 << " MHz\n";
 
         // Hardware resources
         std::cout << "\n--- Hardware Resources ---\n";
-
         std::cout << "Registers Per Block:            " << prop.regsPerBlock << "\n";
-
         std::cout << "Registers Per SM:               " << prop.regsPerMultiprocessor << "\n";
-
         std::cout << "Concurrent Kernels:             " << (prop.concurrentKernels ? "Yes" : "No") << "\n";
-
         std::cout << std::endl;
     }
 
