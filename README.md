@@ -8,3 +8,4 @@ The course is designed to teach students about GPU programming using CUDA.
 
 - [Tutorial 1](Tutorial_1/note.md)
 - [Tutorial 2](Tutorial_2/note.md)
+- [Tutorial_3](Tutorial_3/note.md)
