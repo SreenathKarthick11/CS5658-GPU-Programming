@@ -75,8 +75,8 @@ int h_edges[E] =
     int threadsPerBlock = 256;
     int blocks = (V + threadsPerBlock - 1) / threadsPerBlock;
 
-
-    for (int level = 0; level < V; level++) {
+    int max_level = 6
+    for (int level = 0; level < max_level; level++) {
 
         bfs<<<blocks, threadsPerBlock>>>(
             V,
