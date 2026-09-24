@@ -1,6 +1,6 @@
 # GPU Programming Notes
 
-This directory contains notes of some of the lectures.
+This directory contain notes.
 
 > [!NOTE]
 > These don't include all the lecture content, only few lectures where I took notes are present.
