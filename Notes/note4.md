@@ -5,7 +5,7 @@ Date : 24 Sep 2026
 ```
 ---
 
-## Tutorial
+## Guest Lecture
 
 - We discussed about **Roof Line Analysis**.
 
