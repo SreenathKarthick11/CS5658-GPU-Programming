@@ -7,11 +7,12 @@ Date : 24 Sep 2026
 
 ## Tutorial
 
-- We discussed about **Roof Line Profiling**.
+- We discussed about **Roof Line Analysis**.
 
 ---
 
-> [!NOTE] Bhavani Cluster has 32 GPUs, and compute capability of 8.0
+> [!NOTE]
+Bhavani Cluster has 32 GPUs, and compute capability of 8.0
 
 > [!QUESTION]
 >```cuda
@@ -30,7 +31,8 @@ As the host doesn't waits for device , it just finishs executing,hence most of t
 
 ### Warp Shuffle Functions
 
->[!NOTE] LaneId = threadId.x % warp_size
+>[!NOTE]
+>LaneId = threadId.x % warp_size
 
 | Function | What it does | Typical use |
 |----------|-------------|-------------|
