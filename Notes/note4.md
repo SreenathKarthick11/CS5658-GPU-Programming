@@ -53,5 +53,25 @@ As the host doesn't waits for device , it just finishs executing,hence most of t
 
 ---
 
+## Half Data type in Cuda
+
+- **Format:** 1 sign + 5 exponent + 10 mantissa (IEEE 754 binary16)
+- **Size:** 2 bytes | **Range:** ~6.1e-5 to ~65504
+- **Header:** `#include <cuda_fp16.h>`
+- **Native arithmetic:** CC ≥ 5.3 (Pascal+)
+
+### Types
+| Type | Notes |
+|------|-------|
+| `__half` | 16-bit float (struct over `unsigned short`) |
+| `__half2` | 2× `__half` packed -> 2-way SIMD, ~2× throughput |
+
+### Conversions
+```cpp
+__half  h  = __float2half(f);
+float   f  = __half2float(h);
+__half2 h2 = __floats2half2_rn(a, b);
+float2  f2 = __half22float2(h2);
+```
 
 
