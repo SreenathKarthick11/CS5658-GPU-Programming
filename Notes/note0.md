@@ -11,3 +11,4 @@ This directory contain notes.
 - [Some Questions to Ponder Upon](note2.md)
 - [Memory Banks and Profiling](note3.md)
 - [Thread communication in a Warp](note4.md)
+- [MatMul with Tensors](note5.md)
