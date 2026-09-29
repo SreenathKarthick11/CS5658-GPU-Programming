@@ -74,4 +74,4 @@ __half2 h2 = __floats2half2_rn(a, b);
 float2  f2 = __half22float2(h2);
 ```
 
-
+> [!NOTE] We could not run the command `reduce` , as it requires compute capability of 8.0
