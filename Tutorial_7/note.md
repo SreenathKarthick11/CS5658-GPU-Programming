@@ -1,51 +1,79 @@
-# Tutorial 7 :
+# Tutorial 7
 
-Learning to Use the Bhavani Cluster
+Learning to Use the Bhavani Cluster.
 
 ## Task 1
 
-Make a simple vector addition program and schedule the job in Bhavani Cluster to run the program.
+Implement **Vector Addition** using CUDA and schedule the job on the Bhavani Cluster.
 
-Files: `vec_add.cu` (CUDA code), `submit_vecadd.sh` (Slurm batch file), `run_job.sh` (local helper script)
+**Files:**
 
-### Method 1: Manual (on the cluster)
+* `vec_add.cu` : CUDA implementation
+* `submit_vecadd.sh` : Slurm batch script
+* `run_job.sh` : local helper script
+
+### Manual Run
+
+Compile the CUDA program on the Bhavani login node and submit it using Slurm.
 
 ```bash
-cd ~/gpu_projects/Tutorial_7
-
-# 1. Compile on the login node
 module unload gnu12
 module load cuda/11.3
 nvcc vec_add.cu -o vec_add
 
-# 2. Submit the job
 sbatch submit_vecadd.sh
-
-# 3. Check the result
-squeue -u $USER          # job status
-cat job.<JOBID>.out      # output
-cat job.<JOBID>.err      # errors
 ```
 
-### Method 2: Using `run_job.sh` (from the local machine)
+### Using `run_job.sh`
 
-Run it from the folder with the `.cu` and sbatch files. It copies the files, compiles, submits, waits and prints the output.
+`run_job.sh` copies the CUDA and Slurm files to the Bhavani cluster, compiles the CUDA program on the login node, submits the Slurm job, waits for it to finish, and prints the output.
 
 ```bash
-./run_job.sh vec_add.cu submit_vecadd.sh       # logs deleted, folder stays
-./run_job.sh -k vec_add.cu submit_vecadd.sh    # keep the logs
-./run_job.sh -d vec_add.cu submit_vecadd.sh    # delete the remote folder
+./run_job.sh vec_add.cu submit_vecadd.sh
 ```
 
-Flags go before the filenames.
+Options:
 
-### Issues faced
+```bash
+./run_job.sh -k vec_add.cu submit_vecadd.sh
+./run_job.sh -d vec_add.cu submit_vecadd.sh
+```
 
-- **`features.h: No such file`**: compiling on a compute node, which lacks dev headers. Compile on the login node instead.
-- **`unsupported GNU version` / `std::pair` errors**: CUDA 11.3 does not work with the default `gnu12`. Fix: `module unload gnu12` so the system GCC 8.5 is used.
+* `-k` — keep the `.out` and `.err` files.
+* `-d` — delete the remote project folder after execution.
+
+---
 
 ## Task 2
 
-Implement a Matrix Multiplication code with tensors , and schedule the job to run in Bhavani cluster
+Implement **Matrix Multiplication** of 64x64 with **Tensor Cores** and tile size of 16x16.
+
+**Solution:** [matmul_with_tensor_cores](matmul_tensor.cu)
+
+**Files:**
+
+* `matmul_tensor.cu` : Tensor Core matrix multiplication using WMMA
+* `submit_matmul_tensor.sh` : Slurm batch script
+
+### Manual Run
+
+Copy the files to Cluster
+
+```bash
+module unload gnu12
+module load cuda/11.3
+nvcc matmul_tensor.cu -o matmul_tensor
+
+sbatch submit_matmul_tensor.sh
+```
+
+### Using `run_job.sh`
+
+Tensor Core compilation requires the CUDA architecture to be specified using the `-a` option.
+
+```bash
+./run_job.sh -a sm_70 matmul_tensor.cu submit_matmul_tensor.sh
+```
+
 
 
