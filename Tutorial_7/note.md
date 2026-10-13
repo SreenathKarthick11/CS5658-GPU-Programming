@@ -17,6 +17,10 @@ Implement **Vector Addition** using CUDA and schedule the job on the Bhavani Clu
 Compile the CUDA program on the Bhavani login node and submit it using Slurm.
 
 ```bash
+scp local_file_path s112301042-unnikrishnan@192.168.1.133:~/remote_dir_path
+```
+
+```bash
 module unload gnu12
 module load cuda/11.3
 nvcc vec_add.cu -o vec_add
