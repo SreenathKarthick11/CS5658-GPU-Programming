@@ -13,3 +13,4 @@ This directory contain notes.
 - [Thread communication in a Warp](note4.md)
 - [MatMul with Tensors](note5.md)
 - [Multi GPU Programming](note6.md)
+- [Compiling GPU Code](note7.md)
