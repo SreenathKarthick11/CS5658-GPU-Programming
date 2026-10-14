@@ -49,3 +49,9 @@ scp s112301042-unnikrishnan@192.168.1.133:~/test/matmul_profile.sqlite .
 ```
 
 Open the `.nsys-rep` file in **NVIDIA Nsight Systems GUI** locally to inspect timeline traces and GPU kernel metrics.
+
+### Inspecting in GUI
+
+![GUI](gui_nsys.png)
+
+---
