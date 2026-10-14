@@ -1,0 +1,73 @@
+[s112301042-unnikrishnan@master test]$ sbatch submit_matmul.sh
+Submitted batch job 13278
+[s112301042-unnikrishnan@master test]$ cat matmul_nsys_13278.out
+Sample Output C[0]: 2048 (Expected: 2048)
+Generating '/tmp/nsys-report-788f.qdstrm'
+[1/8] [========================100%] matmul_profile_%j.nsys-rep
+[2/8] [========================100%] matmul_profile_%j.sqlite
+[3/8] Executing 'nvtx_sum' stats report
+[4/8] Executing 'osrt_sum' stats report
+
+ Time (%)  Total Time (ns)  Num Calls    Avg (ns)     Med (ns)    Min (ns)   Max (ns)   StdDev (ns)           Name
+ --------  ---------------  ---------  ------------  -----------  --------  ----------  ------------  ---------------------
+     51.8      238,056,516        632     376,671.7     33,299.5       272  39,309,193   1,785,685.6  ioctl
+     43.7      200,700,428         12  16,725,035.7  3,066,511.0     1,268  85,665,554  26,982,046.1  poll
+      2.2        9,989,701          5   1,997,940.2      4,688.0        47   9,917,592   4,427,311.8  fread
+      1.1        4,958,152         52      95,349.1      4,692.5     2,006     599,255     158,851.0  open64
+      0.3        1,561,017         62      25,177.7        170.5       102   1,083,381     140,603.6  fcntl
+      0.2        1,105,549         39      28,347.4      1,973.0     1,017     525,583      93,680.8  fopen
+      0.2          967,646         28      34,558.8      4,650.0     1,873     623,497     116,142.4  mmap64
+      0.2          817,292          9      90,810.2     14,167.0     8,810     490,648     158,768.9  sem_timedwait
+      0.1          566,040          4     141,510.0     99,706.0    84,024     282,604      94,376.9  pthread_create
+      0.1          354,728         32      11,085.3        655.5       406     209,005      42,031.8  fclose
+      0.0           70,284         15       4,685.6      1,594.0       774      36,840       9,055.5  mmap
+      0.0           32,142         25       1,285.7         35.0        31      26,095       5,269.1  fgets
+      0.0           22,099          6       3,683.2      3,297.5     2,550       6,480       1,419.1  open
+      0.0           21,204         10       2,120.4      1,648.0       558       5,839       1,591.0  write
+      0.0           16,796         12       1,399.7         27.0        26      11,543       3,493.4  fflush
+      0.0           12,842          6       2,140.3      1,891.5     1,360       3,757         910.9  munmap
+      0.0           10,566         13         812.8      1,178.0       221       1,306         481.3  read
+      0.0            6,969          2       3,484.5      3,484.5     2,588       4,381       1,267.8  socket
+      0.0            6,052          9         672.4        160.0        36       2,872       1,085.9  fwrite
+      0.0            5,985          1       5,985.0      5,985.0     5,985       5,985           0.0  connect
+      0.0            5,300          1       5,300.0      5,300.0     5,300       5,300           0.0  pipe2
+      0.0            2,223         64          34.7         20.0        18         172          39.5  pthread_mutex_trylock
+      0.0            1,374          1       1,374.0      1,374.0     1,374       1,374           0.0  bind
+      0.0            1,297          7         185.3        163.0       101         289          75.7  dup
+      0.0              487          1         487.0        487.0       487         487           0.0  listen
+      0.0              155          1         155.0        155.0       155         155           0.0  putc
+
+[5/8] Executing 'cuda_api_sum' stats report
+
+ Time (%)  Total Time (ns)  Num Calls    Avg (ns)    Med (ns)   Min (ns)   Max (ns)     StdDev (ns)           Name
+ --------  ---------------  ---------  ------------  ---------  --------  -----------  -------------  ---------------------
+     98.7      233,461,756          3  77,820,585.3   39,769.0    35,495  233,386,492  134,724,027.2  cudaMalloc
+      1.0        2,319,971          3     773,323.7  447,230.0   434,886    1,437,855      575,534.1  cudaMemcpy
+      0.2          408,233          1     408,233.0  408,233.0   408,233      408,233            0.0  cudaDeviceSynchronize
+      0.1          298,961          3      99,653.7  104,106.0    90,700      104,155        7,754.1  cudaFree
+      0.0           36,932          1      36,932.0   36,932.0    36,932       36,932            0.0  cudaLaunchKernel
+
+[6/8] Executing 'cuda_gpu_kern_sum' stats report
+
+ Time (%)  Total Time (ns)  Instances  Avg (ns)   Med (ns)   Min (ns)  Max (ns)  StdDev (ns)                       Name
+ --------  ---------------  ---------  ---------  ---------  --------  --------  -----------  -----------------------------------------------
+    100.0          395,491          1  395,491.0  395,491.0   395,491   395,491          0.0  matMulGPU(const int *, const int *, int *, int)
+
+[7/8] Executing 'cuda_gpu_mem_time_sum' stats report
+
+ Time (%)  Total Time (ns)  Count  Avg (ns)   Med (ns)   Min (ns)  Max (ns)  StdDev (ns)      Operation
+ --------  ---------------  -----  ---------  ---------  --------  --------  -----------  ------------------
+     57.3          941,511      1  941,511.0  941,511.0   941,511   941,511          0.0  [CUDA memcpy DtoH]
+     42.7          701,989      2  350,994.5  350,994.5   350,947   351,042         67.2  [CUDA memcpy HtoD]
+
+[8/8] Executing 'cuda_gpu_mem_size_sum' stats report
+
+ Total (MB)  Count  Avg (MB)  Med (MB)  Min (MB)  Max (MB)  StdDev (MB)      Operation
+ ----------  -----  --------  --------  --------  --------  -----------  ------------------
+      8.389      2     4.194     4.194     4.194     4.194        0.000  [CUDA memcpy HtoD]
+      4.194      1     4.194     4.194     4.194     4.194        0.000  [CUDA memcpy DtoH]
+
+Generated:
+    /home/s112301042-unnikrishnan/test/matmul_profile.nsys-rep
+    /home/s112301042-unnikrishnan/test/matmul_profile.sqlite
+[s112301042-unnikrishnan@master test]$
