@@ -14,3 +14,4 @@ This directory contain notes.
 - [MatMul with Tensors](note5.md)
 - [Multi GPU Programming](note6.md)
 - [Compiling GPU Code](note7.md)
+- [Floating Point Representation & Gather Apply and Scatter](note8.md)
