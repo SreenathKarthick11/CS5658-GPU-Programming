@@ -15,7 +15,7 @@ __global__ void matmulTensorCore( const __half* A, const __half* B, float* C) {
     int tileCol = blockIdx.x;
 
     wmma::fragment< wmma::matrix_a, TILE, TILE, TILE, __half, wmma::row_major > a_frag;
-    wmma::fragment< wmma::matrix_b, TILE, TILE, TILE, __half, wmma::col_major > b_frag;
+    wmma::fragment< wmma::matrix_b, TILE, TILE, TILE, __half, wmma::row_major > b_frag;
     wmma::fragment< wmma::accumulator, TILE, TILE, TILE, float > c_frag;
 
     wmma::fill_fragment(c_frag, 0.0f);
