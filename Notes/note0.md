@@ -16,3 +16,4 @@ This directory contain notes.
 - [Compiling GPU Code](note7.md)
 - [Floating Point Representation & Gather Apply and Scatter](note8.md)
 - [Delauany Triangluation](note9.md)
+- [AMD GPU Programming](note10.md)
